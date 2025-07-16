@@ -1,0 +1,220 @@
+body {
+    font-family: 'Cinzel', serif; /* ファンタジー調のフォント */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(to bottom right, #2c3e50, #4a6984); /* 暗めのグラデーション背景 */
+    margin: 0;
+    color: #e0e0e0; /* 全体的な文字色 */
+    overflow: hidden; /* スクロールバー非表示 */
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTAgMjAwTDIwMCAwVjIwMEgwem0wLTUwTDE1MCAwVjUwSDcwem0wLTUwTDEwMCAwVjUwSDB6bTAgLTUwTDUwIDBWNTBIMHoiIGZpbGw9IiM0NjYwNzQiIGZpbGwtb3BhY2l0eT0iMC4xIi8+PC9zdmc+'); /* 魔法陣のようなパターン */
+    opacity: 0.3;
+    z-index: -1;
+}
+
+.stopwatch-container {
+    background: linear-gradient(to bottom, #3a3a3a, #1a1a1a); /* 暗い石のような質感 */
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(255, 255, 255, 0.1);
+    text-align: center;
+    width: 350px;
+    border: 3px solid #8b4513; /* 木目調の枠 */
+    position: relative;
+    overflow: hidden;
+}
+
+.stopwatch-container::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    border: 5px solid #d4af37; /* ゴールドの装飾 */
+    border-radius: 25px;
+    pointer-events: none;
+    z-index: 0;
+    box-shadow: inset 0 0 15px rgba(255, 215, 0, 0.5);
+}
+
+h1 {
+    font-family: 'MedievalSharp', cursive; /* より古風な見出しフォント */
+    color: #ffd700; /* ゴールド */
+    margin-bottom: 25px;
+    font-size: 2.5em;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    position: relative;
+    z-index: 1;
+}
+
+.display {
+    font-family: 'Cinzel', serif;
+    font-size: 4.5em;
+    font-weight: bold;
+    margin-bottom: 35px;
+    color: #32cd32; /* 魔法の光のような緑 */
+    background-color: #000000; /* 暗闇 */
+    padding: 15px 25px;
+    border-radius: 12px;
+    box-shadow: inset 0 0 15px rgba(50, 205, 50, 0.8), 0 0 20px rgba(50, 205, 50, 0.5);
+    border: 2px solid #5cb85c; /* 緑の縁取り */
+    text-shadow: 0 0 10px rgba(50, 205, 50, 0.9);
+    letter-spacing: 2px;
+    position: relative;
+    z-index: 1;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 25px;
+    position: relative;
+    z-index: 1;
+}
+
+.button {
+    padding: 15px 30px;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: 'Cinzel', serif;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transition: width 0.4s ease, height 0.4s ease;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+}
+
+.button:hover::before {
+    width: 200%;
+    height: 200%;
+}
+
+.button span {
+    position: relative;
+    z-index: 1;
+}
+
+.button.start {
+    background: linear-gradient(to right, #4CAF50, #2E8B57); /* 森の緑 */
+    border: 2px solid #3CB371;
+}
+
+.button.start:hover {
+    background: linear-gradient(to right, #3CB371, #2E8B57);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(76, 175, 80, 0.5);
+}
+
+.button.stop {
+    background: linear-gradient(to right, #D32F2F, #B71C1C); /* 炎の赤 */
+    border: 2px solid #EF5350;
+}
+
+.button.stop:hover {
+    background: linear-gradient(to right, #B71C1C, #D32F2F);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(211, 47, 47, 0.5);
+}
+
+.button.reset {
+    background: linear-gradient(to right, #546E7A, #37474F); /* 石の灰色 */
+    border: 2px solid #78909C;
+}
+
+.button.reset:hover {
+    background: linear-gradient(to right, #37474F, #546E7A);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(84, 110, 122, 0.5);
+}
+
+.button.lap {
+    background: linear-gradient(to right, #8A2BE2, #6A5ACD); /* 魔法の紫 */
+    border: 2px solid #9370DB;
+}
+
+.button.lap:hover {
+    background: linear-gradient(to right, #6A5ACD, #8A2BE2);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(138, 43, 226, 0.5);
+}
+
+.lap-list {
+    list-style: none;
+    padding: 0;
+    max-height: 180px;
+    overflow-y: auto;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 25px;
+    text-align: left;
+    position: relative;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.3); /* 半透明の背景 */
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.lap-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.lap-list::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.lap-list::-webkit-scrollbar-thumb {
+    background: #ffd700; /* ゴールドのスクロールバー */
+    border-radius: 10px;
+}
+
+.lap-list::-webkit-scrollbar-thumb:hover {
+    background: #e6c200;
+}
+
+.lap-list li {
+    padding: 10px 5px;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.15);
+    color: #b0c4de; /* 淡い青灰色 */
+    font-size: 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'MedievalSharp', cursive; /* ラップリストのフォント */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.lap-list li:last-child {
+    border-bottom: none;
+}
